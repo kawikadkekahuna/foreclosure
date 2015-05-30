@@ -76,7 +76,7 @@ function borrower(loan){
 
     makePayment: function(){
       if(account.funds >= loan.getMonthlyPayment()){
-
+        loan.receivePayment(loan.getMonthlyPayment());
         account.funds -= loan.getMonthlyPayment();
       }else{
         loan.receivePayment(account.funds);
@@ -97,7 +97,7 @@ stevesLoan = loan();
 steve = borrower(stevesLoan);
 
 
-while(stevesLoan.isForeclosed() != true){
+while(stevesLoan.isForeclosed() === false){
 
   steve.payDay();
   steve.makePayment();
